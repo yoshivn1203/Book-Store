@@ -1,6 +1,7 @@
 ﻿using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -10,10 +11,12 @@ namespace BulkyBookWeb.Controllers;
 public class ProductController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IWebHostEnvironment _hostEnviroment;
 
-    public ProductController(IUnitOfWork unitOfWork)
+    public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnviroment)
     {
         _unitOfWork = unitOfWork;
+        _hostEnviroment = hostEnviroment;
     }
     public IActionResult Index()
     {
@@ -57,14 +60,28 @@ public class ProductController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Upsert(CoverType obj)
+    public IActionResult Upsert(ProductVM obj, IFormFile? file)
     {
      
         if (ModelState.IsValid)
         {
-            _unitOfWork.CoverType.Update(obj);
+            string wwwRootPath = _hostEnviroment.WebRootPath;
+            if (file != null)
+            {
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(wwwRootPath, @"images\products");
+                var extension = Path.GetExtension(file.FileName);
+
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                obj.Product.ImageUrl = @"\images\product\" + fileName + extension;
+
+            }
+            _unitOfWork.Product.Add(obj.Product);
             _unitOfWork.Save();
-            TempData["success"] = "Cover Type updated successfully";
+            TempData["success"] = "Product updated successfully";
             return RedirectToAction("Index");
         }
         return View(obj);
