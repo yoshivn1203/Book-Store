@@ -15,24 +15,32 @@ namespace BulkyBook.Models
         public string Description { get; set; }
         public string ISBN { get; set; }
         public string Author { get; set; }
+        [Display(Name = "List Price")]
+
         [Range(1, 10000)]
         public double ListPrice { get; set; }
+        [Display(Name = "Price for 1-50")]
 
         [Range(1, 10000)]
         public double Price { get; set; }
+        [Display(Name = "Price for 51-100")]
 
         [Range(1, 10000)]
         public double Price50 { get; set; }
+        [Display(Name = "Price for 100+")]
 
         [Range(1, 10000)]
         public double Price100 { get; set; }
         [ValidateNever]
 
+        [Display(Name = "Upload Product Image")]
         public string ImageUrl { get; set; }
+        [Display(Name = "Category")]
+
         public int CategoryID { get; set; }
         [ValidateNever]
         public Category Category { get; set; }
-
+        [Display(Name ="Cover Type")]
         public int CoverTypeID { get; set; }
         [ValidateNever]
         public CoverType  CoverType { get; set; }

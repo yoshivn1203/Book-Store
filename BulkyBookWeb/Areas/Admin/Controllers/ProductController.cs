@@ -20,8 +20,7 @@ public class ProductController : Controller
     }
     public IActionResult Index()
     {
-        IEnumerable<CoverType> objCoverTypeList = _unitOfWork.CoverType.GetAll();
-        return View(objCoverTypeList);
+        return View();
     }
 
   
@@ -51,10 +50,10 @@ public class ProductController : Controller
 
         else
         {
-            return Notfound();
+            productVM.Product =_unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+            return View(productVM);
 
         }
-        
     }
 
 
@@ -71,15 +70,34 @@ public class ProductController : Controller
                 string fileName = Guid.NewGuid().ToString();
                 var uploads = Path.Combine(wwwRootPath, @"images\products");
                 var extension = Path.GetExtension(file.FileName);
+                if (obj.Product.ImageUrl != null)
+                {
+                    var oldImagePath = Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+
+                }
 
                 using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                 {
                     file.CopyTo(fileStream);
                 }
-                obj.Product.ImageUrl = @"\images\product\" + fileName + extension;
+                obj.Product.ImageUrl = @"\images\products\" + fileName + extension;
 
             }
-            _unitOfWork.Product.Add(obj.Product);
+          
+            if (obj.Product.Id==0)
+            {
+                _unitOfWork.Product.Add(obj.Product);
+
+            }
+            else
+            {
+                _unitOfWork.Product.Update(obj.Product);
+
+            }
             _unitOfWork.Save();
             TempData["success"] = "Product updated successfully";
             return RedirectToAction("Index");
@@ -87,45 +105,8 @@ public class ProductController : Controller
         return View(obj);
     }
 
-    public IActionResult Delete(int? id)
-    {
-        if (id == null || id == 0)
-        {
-            return Notfound();
-        }
-
-        var coverTypefromDb = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
-        if (coverTypefromDb == null)
-        {
-            return Notfound();
-
-        }
-        return View(coverTypefromDb);
-    }
 
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult DeletePost(int? id)
-    {
-
-        if (id == null || id == 0)
-        {
-            return Notfound();
-        }
-
-        var coverTypefromDb = _unitOfWork.CoverType.GetFirstOrDefault(d => d.Id == id);
-        if (coverTypefromDb == null)
-        {
-            return Notfound();
-
-        }
-        _unitOfWork.CoverType.Remove(coverTypefromDb);
-        _unitOfWork.Save();
-        TempData["success"] = "Cover Type deleted successfully";
-        return RedirectToAction("Index");
-
-    }
 
 
 
@@ -134,5 +115,39 @@ public class ProductController : Controller
         throw new NotImplementedException();
     }
 
+
+    #region API CALLS   
+    [HttpGet]
+     public IActionResult GetAll()
+    {
+        var productList = _unitOfWork.Product.GetAll(includeProperties:"Category,CoverType") ;
+        return Json(new {data=productList});
+    }
+
+
+    [HttpDelete]
+    public IActionResult Delete(int? id)
+    {
+
+        var obj = _unitOfWork.Product.GetFirstOrDefault(d => d.Id == id);
+        if (obj == null)
+        {
+            return Json(new {success = false, message = "Error while deleting"});
+
+        }
+        var oldImagePath = Path.Combine(_hostEnviroment.WebRootPath, obj.ImageUrl.TrimStart('\\'));
+        if (System.IO.File.Exists(oldImagePath))
+        {
+            System.IO.File.Delete(oldImagePath);
+        }
+        _unitOfWork.Product.Remove(obj);
+        _unitOfWork.Save();
+        return Json(new {success = true, message = "Delete Successful" });
+
+
+    }
+
+
+    #endregion
 }
 
