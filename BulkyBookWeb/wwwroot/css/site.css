@@ -24,11 +24,9 @@ body {
     display: none;
 }
 
-footer {
-    position: absolute;
-    left: 0px;
+/*footer {
+    position:initial;
     bottom: 0px;
-    height: 40px;
     width: 100%;
-    background: #2c3e50;
-}
+    
+}*/
