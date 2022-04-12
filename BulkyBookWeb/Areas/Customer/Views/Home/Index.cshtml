@@ -4,20 +4,52 @@
 <!-- Button trigger modal -->
 
 <div class="col-12 text-center">
-	<button type="button" class="btn btn-info mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	<button type="button" class="btn btn-danger btn4 mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
 	<i class="fa-solid fa-book"></i> &nbsp &nbsp;How To Use This Website
 	</button>
 </div>
 <!-- Modal -->
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">How To Use This Website</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="color: #5e9ca0; text-align: center;"><strong>Bulky Book</strong></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+
+                    <h4><span style="color: #008080;">Website Overview:</span></h4>
+                    <ul>
+                        <li>
+                            Following are the User Account that exists by default <i style="color:dodgerblue">(Password: Admin123*)</i>:
+                                                                                        <ul>
+                                                                                            <li>Admin User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i style="color:dodgerblue">admin@gmail.com</i></li>
+                                                                                            <li>Employee User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i style="color:dodgerblue">employee@gmail.com</i></li>
+                                                                                            <li>Individual User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i style="color:dodgerblue">individual@gmail.com</i></li>
+                                                                                            <li>Authorized Company User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i style="color:dodgerblue">authcompany@gmail.com</i></li>
+                                                                                            <li>Non Authorized Company User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i style="color:dodgerblue">nonauthcompany@gmail.com</i></li>
+
+                                                                                        </ul>
+                        </li>
+                        <li>You can create new accounts as you wish! If you prefer to create any accounts please login using the Admin/Manager User and navigate to Users inside Content Management.&nbsp;</li>
+                        <li>Create/Edit/Delete functionalities have been disabled for all users inside Content Management (Admin) portal to avoid misuse of website.</li>
+                        <li>If any Manager account locks any other user using Content Management portal, they will be able to lock them for only 1 min and system will unlock them after 2min.</li>
+                        <li>Orders older than 30 days might be deleted.</li>
+                    </ul>
+                    <h4 style="color: #2e6c80;">How to use the demo website:</h4>
+                    <ul>
+                        <li>User can place order after adding items to cart.</li>
+                        <li>Once order is placed you can login as Manager/Admin User and Manage orders and see the flow of application.</li>
+                        <li>
+                            In order to place order you can use any test credit card number supported by stripe.
+                            <ul>
+                                <li>
+                                    A default example is 4242 4242 4242 4242, valid date , any 3 digit CVV.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Admin user can register new employees/admins for the website.</li>
+                    </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -27,9 +59,11 @@
 </div>
 
 
+
 <div class="row pb-3">
+
 	@foreach(var product in Model)
-	{
+	{	
 		<div class="col-lg-3 col-md-6">
 			<div class="row p-2 mb-5 mt-5">
 				<div class="col-12 p-1" style="border:1px solid #008cba; border-radius: 5px;">
@@ -50,7 +84,7 @@
 						</div>
 					</div>
 					<div>
-						<a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@product.Id">
+						<a asp-action="Details" class="btn btn-primary btn2 form-control" asp-route-id="@product.Id">
 							Details
 						</a>
 					</div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Bulky Book</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-    <link rel="stylesheet" href="~/css/Flatty.css" />
+    <link rel="stylesheet" href="~/css/Lux.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -14,9 +14,17 @@
 </head>
 <body>
     <header>
+        <!-- sticky bar -->
+        <div class="alert alert-info alert-dismissible fade show  fixed-top text-center" role="alert" id="sticky">
+            FREE STANDARD SHIPPING ON ORDERS OVER $100
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+             </button>
+        </div>
+        <!-- sticky bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Bulky Book</a>
+                <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Bulky Book</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,14 +71,16 @@
             @RenderBody()
 
             <!-- Back to top button -->
-            <button type="button" class="btn btn-info btn-floating btn-lg" id="btn-back-to-top">
+            <button type="button" class="btn btn-info btn5" id="btn-back-to-top">
             <i class="fas fa-angle-double-up"></i>
+            
             </button>
+            <!-- Back to top button -->
 
         </main>
     </div>
 
-    <!-- Footer -->
+<!-- Footer -->
 <footer class="text-center text-lg-start bg-primary text-light">
   <!-- Section: Social media -->
   <section

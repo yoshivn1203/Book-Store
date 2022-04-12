@@ -10,7 +10,7 @@
             <h2 class ="text-primary">Cover Type</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="CoverType" asp-action="Create" class="btn btn-primary">
+            <a asp-controller="CoverType" asp-action="Create" class="btn btn-primary btn4">
                 <i class="bi bi-plus-circle"></i> &nbsp; Create New Cover Type
             </a>
         </div>
@@ -19,13 +19,18 @@
 
 
 
-<table class="table table-bordered table-striped" style="width:100%">
+<table class="table table-bordered table-striped table-sm" style="width:100%">
     <thread>
         <tr>
             
             <th>
                 Cover Type
             </th>
+            <th>
+                Update Data
+            </th>
+
+
         </tr>
     </thread>
     <tbody>
@@ -38,10 +43,10 @@
                 </td>
                  <td width="30%">
                      
-                    <a asp-controller="CoverType" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary btn-sm">
+                    <a asp-controller="CoverType" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary btn-sm btn4">
                         <i class="bi bi-pencil-square"></i> &nbsp; Edit
                     </a>
-                     <a asp-controller="CoverType" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm">
+                     <a asp-controller="CoverType" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm btn4">
                         <i class="bi bi-trash3"></i> &nbsp; Delete
                     </a>
                     

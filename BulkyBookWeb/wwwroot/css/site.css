@@ -14,8 +14,10 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 0px;
+    margin-top: 46px;
 }
+
 
 #btn-back-to-top {
     position: fixed;
@@ -24,9 +26,47 @@ body {
     display: none;
 }
 
-/*footer {
-    position:initial;
-    bottom: 0px;
-    width: 100%;
-    
-}*/
+
+
+#sticky {
+    margin-top: 0px;
+    height:40px;
+    padding-bottom: 30px;
+}
+
+
+.btn {
+    /*border: none;
+    color: white;*/
+    /*padding: 10px;*/
+    /*text-align: center;*/
+   /* text-decoration: none;*/
+    /*display: inline-block;*/
+   /* font-size: 10px;*/
+    /*margin: 4px 2px;*/
+}
+
+.btn1 {
+    border-radius: 2px;
+}
+
+.btn2 {
+    border-radius: 4px;
+}
+
+.btn3 {
+    border-radius: 8px;
+}
+
+.btn4 {
+    border-radius: 12px;
+}
+
+.btn5 {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 30px;
+    padding: 10px;
+}

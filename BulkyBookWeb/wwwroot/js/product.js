@@ -20,9 +20,9 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                     <a href="/Admin/Product/Upsert?id=${data}"
-                    class="btn btn-primary btn-sm"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
+                    class="btn btn-primary btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
                      <a onClick=Delete('/Admin/Product/Delete/${data}')
-                     class="btn btn-danger btn-sm"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>`
+                     class="btn btn-danger btn-sm btn4"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>`
                 },
                 "width": "15%"
             }
@@ -59,22 +59,3 @@ function Delete(url) {
     })
 }
 
-//$(document).ready(function () {
-//    $('#tblData').DataTable({
-//        ajax: '/Admin/Product/GetAll',
-//        columns: [
-//            {
-//                data: 'title'
-//            },
-//            {
-//                data: 'isbn'
-//            },
-//            {
-//                data: 'price'
-//            },
-//            {
-//                data: 'author'
-//            },
-//        ]
-//    });
-//});
