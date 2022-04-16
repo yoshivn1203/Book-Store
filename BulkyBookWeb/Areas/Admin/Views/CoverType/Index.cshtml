@@ -43,13 +43,18 @@
                 </td>
                  <td width="30%">
                      
-                    <a asp-controller="CoverType" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary btn-sm btn4">
+                  @*  <a asp-controller="CoverType" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary btn-sm btn4">
                         <i class="bi bi-pencil-square"></i> &nbsp; Edit
-                    </a>
-                     <a asp-controller="CoverType" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm btn4">
+                    </a>*@
+                  
+                    <a href="/Admin/CoverType/Edit?id=@obj.Id"
+                    class="btn btn-primary btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
+
+                     @*<a asp-controller="CoverType" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm btn4">
                         <i class="bi bi-trash3"></i> &nbsp; Delete
-                    </a>
-                    
+                    </a>*@
+                    <a href="/Admin/CoverType/Delete/@obj.Id"
+                    class="btn btn-danger btn-sm btn4"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>
                 </td>
             </tr>
         }

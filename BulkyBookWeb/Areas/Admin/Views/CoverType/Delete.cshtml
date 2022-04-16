@@ -5,7 +5,7 @@
 	<input asp-for="Id" hidden/>
 	<div class="border p-3 mt-5">
 		<div class="row pb-2">
-			<h2 class="text-dark">Delete CoverType</h2>
+			<h2 class="text-dark">Delete Cover Type</h2>
 			<hr />
 		</div>
 		@*<div asp-validation-summary=All></div>*@
@@ -14,7 +14,7 @@
 			<input asp-for="Name" disabled class="form-control" />
 		</div>
 		
-		<button type="submit" class="btn btn-success btn4" style="width:150px">Delete</button>
+		<button type="submit" class="btn btn-danger btn4" style="width:150px">Delete</button>
 		<a asp-controller="CoverType" asp-action="Index" class="btn alert-dark btn4" style="width:170px">
 			Back to List
 		</a>	
