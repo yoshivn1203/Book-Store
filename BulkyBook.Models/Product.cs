@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,5 +45,15 @@ namespace BulkyBook.Models
         public int CoverTypeID { get; set; }
         [ValidateNever]
         public CoverType  CoverType { get; set; }
+
+        public string ShortenDescription(int charCount)
+        {
+            if(Description.Length > charCount)
+            {
+                string shortenDescription = Description.Substring(0, charCount) + "...";
+                return shortenDescription;
+            }
+            return Description;
+        }
     }
 }
