@@ -24,7 +24,7 @@
 					</div>
 					<div class="col-12 col-lg-6 pt-md-3">
 						<h5><strong>@item.Product.Title</strong></h5>
-						<p><small>@Html.Raw(item.Product.ShortenDescription(charCount: 400))</small></p>
+						<p><small>@Html.Raw(item.Product.ShortenDescription(charCount: 450))</small></p>
 					</div>
 					<div class="col-12  col-lg-4 text-center row">
 						<div class="col-5 text-md-right pt-4">
@@ -56,7 +56,7 @@
 						<ul class="list-group">
 							<li class="list-group-item d-flex justify-content-between bg-light">
 								<span class="text-info"> Total (USD)</span>
-								<strong class="text-info">@Model.CartTotal.ToString("c")</strong>
+								<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c")</strong>
 							</li>
 						</ul>
 					</div>
@@ -67,7 +67,7 @@
 			<div class="card-footer">
 				<div class="card-footer row">
 					<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
-						<a asp-action="Summary" class="btn btn4 btn-success form-control">Summary</a>
+						<a asp-action="Summary" class="btn btn4 btn-warning form-control">Summary</a>
 					</div>
 				</div>
 			</div>

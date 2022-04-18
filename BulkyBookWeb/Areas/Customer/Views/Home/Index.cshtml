@@ -4,7 +4,7 @@
 <!-- Button trigger modal -->
 
 <div class="col-12 text-center">
-	<button type="button" class="btn btn-danger btn4 mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	<button type="button" class="btn btn-warning btn4 mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
 	<i class="fa-solid fa-book"></i> &nbsp &nbsp;How To Use This Website
 	</button>
 </div>
@@ -72,8 +72,8 @@
 
 						<div class="card-body">
 						<div class="pl-1">
-							<p class="card-title h5 text-primary">@product.Title</p>
-							<p class="card-title text-info">by <b>@product.Author</b></p>
+							<p class="card-title h5 text-dark">@product.Title</p>
+							<p class="card-title text-warning">by <b>@product.Author</b></p>
 						</div>
 						<div class="pl-1">
 							<p>List Price: <strike><b>$@product.ListPrice.ToString("0.00")</b></strike></p>
@@ -84,7 +84,7 @@
 						</div>
 					</div>
 					<div>
-						<a asp-action="Details" class="btn btn-primary btn2 form-control" asp-route-productId="@product.Id">
+						<a asp-action="Details" class="btn btn-dark btn2 form-control" asp-route-productId="@product.Id">
 							Details
 						</a>
 					</div>

@@ -7,10 +7,10 @@
 <div class ="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class ="text-primary">Cover Type</h2>
+            <h2 class ="text-dark">Cover Type</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="CoverType" asp-action="Create" class="btn btn-primary btn4">
+            <a asp-controller="CoverType" asp-action="Create" class="btn btn-warning btn4">
                 <i class="bi bi-plus-circle"></i> &nbsp; Create New Cover Type
             </a>
         </div>
@@ -48,7 +48,7 @@
                     </a>*@
                   
                     <a href="/Admin/CoverType/Edit?id=@obj.Id"
-                    class="btn btn-primary btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
+                    class="btn btn-warning btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
 
                      @*<a asp-controller="CoverType" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm btn4">
                         <i class="bi bi-trash3"></i> &nbsp; Delete

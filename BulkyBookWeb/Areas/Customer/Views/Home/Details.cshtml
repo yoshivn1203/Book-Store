@@ -4,7 +4,7 @@
 <form method="post">
     <input hidden asp-for="ProductId" />
         <div class="card  container mt-5">
-            <div class="card-header bg-primary text-light ml-0  row ">
+            <div class="card-header bg-dark text-light ml-0  row ">
                 <div class="col-12 col-md-6">
                     <h2 class="text-white-50">@Model.Product.Title</h2>
                     <p class="text-warning">by @Model.Product.Author</p>
@@ -70,10 +70,10 @@
             <div class="card-footer bg-transparent ">
                 <div class="row">
                     <div class="col-12 col-md-3 pb-1">
-                        <a class="btn alert-dark btn4 form-control " style="height:40px;" asp-action="Index">Back to Home</a>
+                        <a class="btn btn-secondary btn4 form-control " style="height:40px;" asp-action="Index">Back to Home</a>
                     </div>
                     <div class="col-12 col-md-3 pb-1">
-                        <button type="submit" value="Add to Cart" class="btn btn-success btn4 form-control" style="height:40px;">Add to Cart</button>
+                        <button type="submit" value="Add to Cart" class="btn btn-warning btn4 form-control" style="height:40px;">Add to Cart</button>
                     </div>
                 </div>
             </div>

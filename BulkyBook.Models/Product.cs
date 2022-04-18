@@ -50,6 +50,10 @@ namespace BulkyBook.Models
         {
             if(Description.Length > charCount)
             {
+                while (!char.IsWhiteSpace(Description[charCount]))
+                {
+                    charCount++;
+                }
                 string shortenDescription = Description.Substring(0, charCount) + "...";
                 return shortenDescription;
             }

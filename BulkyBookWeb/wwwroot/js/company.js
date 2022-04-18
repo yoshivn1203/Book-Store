@@ -15,13 +15,13 @@ function loadDataTable() {
             { "data": "city", "width": "10%" },
             { "data": "state", "width": "10%" },
             { "data": "postalCode", "width": "10%" },
-            { "data": "phoneNumber", "width": "10%" },
+            { "data": "phoneNumber", "width": "15%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `
                     <a href="/Admin/Company/Edit?id=${data}"
-                    class="btn btn-primary btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
+                    class="btn btn-warning btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
                      <a onClick=Delete('/Admin/Company/Delete/${data}')
                      class="btn btn-danger btn-sm btn4"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>`
                 },
