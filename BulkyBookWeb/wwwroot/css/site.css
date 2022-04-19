@@ -82,3 +82,8 @@ footer {
     font-size: 30px;
     padding: 0px;
 }
+
+.active2 {
+    background-color: #808080;
+    color: white;
+}

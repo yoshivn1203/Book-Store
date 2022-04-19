@@ -1,0 +1,95 @@
+﻿@{
+	var status = Context.Request.Query["status"];
+	var delayedPayment = "text-info";
+	var inprocess = "text-primary";
+	var completed = "text-success";
+	var approved = "text-warning";
+	var all = "text-danger";
+
+	switch (status)
+	{
+		case "delayedPayment":
+			delayedPayment = "active2";
+			break;
+		case "inprocess":
+			inprocess = "active2";
+			break;
+		case "completed":
+			completed = "active2";
+			break;
+		case "approved":
+			approved = "active2";
+			break;
+		default:
+			all = "active2";
+			break;
+	}
+}
+
+
+
+<div class="p-3">
+	<div class="d-flex justify-content-between pt-4">
+		<div class="p-2">
+			<h2 class="text-dark">Order List</h2>
+		</div>
+		<div class="p-2">
+			<ul class="list-group list-group-horizontal-sm">
+				<a style="text-decoration:none" asp-controller="Order"
+				   asp-action="Index" asp-route-status="inprocess">
+				<li class="list-group-item @inprocess">In Process</li>
+				</a>
+				<a style="text-decoration:none" asp-controller="Order"
+				   asp-action="Index" asp-route-status="delayedPayment">
+				<li class="list-group-item @delayedPayment">Delayed Payment</li>
+				</a>
+				<a style="text-decoration:none" asp-controller="Order"
+				   asp-action="Index" asp-route-status="approved">
+				<li class="list-group-item @approved">Approved</li>
+				</a>
+				<a style="text-decoration:none" asp-controller="Order"
+				   asp-action="Index" asp-route-status="completed">
+				<li class="list-group-item @completed">Completed</li>
+				</a>
+				<a style="text-decoration:none" asp-controller="Order"
+				   asp-action="Index" asp-route-status="all">
+				<li class="list-group-item @all">All</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+
+
+	<br /> <br />
+
+
+
+	<table id="tblData" class="display" style="width:100%">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Phone Number</th>
+				<th>Email</th>
+				<th>Status</th>
+				<th>Total</th>
+				<th></th>
+			</tr>
+		</thead>
+
+	</table>
+
+</div>
+
+
+
+
+@section Scripts{
+
+
+<script src="/js/order.js"></script>
+
+}
+
+
+
