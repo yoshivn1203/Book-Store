@@ -42,7 +42,7 @@ function loadDataTable(status) {
                 "data": "id",
                 "render": function (data) {
                     return `
-                    <a href="/Admin/Product/Details?orderId=${data}"
+                    <a href="/Admin/Order/Details?orderId=${data}"
                     class="btn btn-warning btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Details </a>
                      `
                 },

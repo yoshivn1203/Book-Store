@@ -35,6 +35,8 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                     cart.Product.Price50, cart.Product.Price100);
                 ShoppingCartVM.OrderHeader.OrderTotal+= (cart.Price*cart.Count);
             }
+            ShoppingCartVM.OrderHeader.OrderTotal = Math.Round(ShoppingCartVM.OrderHeader.OrderTotal, 2);
+
             return View(ShoppingCartVM);
         }
 
@@ -86,6 +88,8 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                     cart.Product.Price50, cart.Product.Price100);
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
             }
+            ShoppingCartVM.OrderHeader.OrderTotal = Math.Round(ShoppingCartVM.OrderHeader.OrderTotal, 2);
+
 
             ApplicationUser applicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(
                 u=>u.Id == claim.Value);
@@ -151,6 +155,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 Session session = service.Create(options);
                 ShoppingCartVM.OrderHeader.SessionId = session.Id;
                 ShoppingCartVM.OrderHeader.PaymentIntentId = session.PaymentIntentId;
+                ShoppingCartVM.OrderHeader.PaymentDate = DateTime.Now;
                 _unitOfWork.Save();
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);
