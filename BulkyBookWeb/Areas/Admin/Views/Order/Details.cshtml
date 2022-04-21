@@ -236,7 +236,7 @@
 							@if (Model.OrderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment &&
 										Model.OrderHeader.OrderStatus == SD.StatusShipped)
 								{
-									<input type="submit" class="btn btn-success form-control my-1" value="Pay Now" />
+									<input type="submit" asp-action="PayNow" class="btn btn-success form-control my-1" value="Pay Now" />
 								}
 							@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
 							{
@@ -274,7 +274,7 @@
 			Swal.fire({
 			  icon: 'error',
 			  title: 'Oops...',
-			  text: 'Please enter tracking number!',
+			  text: 'Please enter Tracking Number!',
 			});
 			return false;
 		}
@@ -282,7 +282,7 @@
 			Swal.fire({
 			  icon: 'error',
 			  title: 'Oops...',
-			  text: 'Please enter carrier!',
+			  text: 'Please enter Carrier!',
 			});
 			return false;
 		}
