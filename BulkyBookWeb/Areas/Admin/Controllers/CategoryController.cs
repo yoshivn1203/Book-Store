@@ -18,8 +18,7 @@ public class CategoryController : Controller
     }
     public IActionResult Index()
     {
-        IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
-        return View(objCategoryList);
+        return View();
     }
 
     public IActionResult Create()
@@ -80,45 +79,45 @@ public class CategoryController : Controller
         return View(obj);
     }
 
-    public IActionResult Delete(int? id)
-    {
-        if (id == null || id == 0)
-        {
-            return Notfound();
-        }
+    //public IActionResult Delete(int? id)
+    //{
+    //    if (id == null || id == 0)
+    //    {
+    //        return Notfound();
+    //    }
 
-        var categoryfromDb = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-        if (categoryfromDb == null)
-        {
-            return Notfound();
+    //    var categoryfromDb = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+    //    if (categoryfromDb == null)
+    //    {
+    //        return Notfound();
 
-        }
-        return View(categoryfromDb);
-    }
+    //    }
+    //    return View(categoryfromDb);
+    //}
 
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult DeletePost(Category Category)
-    {
+    //[HttpPost]
+    //[ValidateAntiForgeryToken]
+    //public IActionResult DeletePost(Category Category)
+    //{
 
-        //if (id == null || id == 0)
-        //{
-        //    return Notfound();
-        //}
+    //    //if (id == null || id == 0)
+    //    //{
+    //    //    return Notfound();
+    //    //}
 
-        var categoryfromDb = _unitOfWork.Category.GetFirstOrDefault(d => d.Id == Category.Id);
-        if (categoryfromDb == null)
-        {
-            return Notfound();
+    //    var categoryfromDb = _unitOfWork.Category.GetFirstOrDefault(d => d.Id == Category.Id);
+    //    if (categoryfromDb == null)
+    //    {
+    //        return Notfound();
 
-        }
-        _unitOfWork.Category.Remove(categoryfromDb);
-        _unitOfWork.Save();
-        TempData["success"] = "Category deleted successfully";
-        return RedirectToAction("Index");
+    //    }
+    //    _unitOfWork.Category.Remove(categoryfromDb);
+    //    _unitOfWork.Save();
+    //    TempData["success"] = "Category deleted successfully";
+    //    return RedirectToAction("Index");
 
-    }
+    //}
 
 
 
@@ -126,6 +125,39 @@ public class CategoryController : Controller
     {
         throw new NotImplementedException();
     }
+
+    #region API CALLS  
+
+
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
+
+        return Json(new { data = objCategoryList });
+    }
+
+    [HttpDelete]
+    public IActionResult Delete(int? id)
+    {
+
+        var obj = _unitOfWork.Category.GetFirstOrDefault(d => d.Id == id);
+        if (obj == null)
+        {
+            return Json(new { success = false, message = "Error while deleting" });
+
+        }
+
+        _unitOfWork.Category.Remove(obj);
+        _unitOfWork.Save();
+        return Json(new { success = true, message = "Delete Successful" });
+
+
+    }
+
+
+    #endregion
+
 
 }
 

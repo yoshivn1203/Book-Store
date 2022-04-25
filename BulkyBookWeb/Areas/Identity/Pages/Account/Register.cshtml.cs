@@ -174,6 +174,14 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
                 user.PostalCode = Input.PostalCode;
                 user.Name = Input.Name;
                 user.PhoneNumber = Input.PhoneNumber;
+                if (Input.Role == null)
+                {
+                    user.Role = SD.Role_User_Indi;
+                }
+                else
+                {
+                    user.Role = Input.Role;
+                }
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (Input.Role == SD.Role_User_Comp)
                 {

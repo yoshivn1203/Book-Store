@@ -1,0 +1,29 @@
+﻿@using BulkyBook.Utility
+@using Microsoft.AspNetCore.Identity
+@using static BulkyBookWeb.Areas.Admin.UserController
+@model IEnumerable<ApplicationUser>
+
+<h2 class="text-dark my-5">User Management</h2>
+
+
+<table id="tblData" class="display" style="width:100%">
+
+	<thead>
+		<tr>
+
+			<th>User Name</th>
+			<th>Name</th>
+			<th>Phone Number</th>
+			<th>Role</th>
+			<th></th>
+
+		</tr>
+
+	</thead>
+
+</table>
+
+@section Scripts{
+<script src="/js/user.js"></script>
+
+}

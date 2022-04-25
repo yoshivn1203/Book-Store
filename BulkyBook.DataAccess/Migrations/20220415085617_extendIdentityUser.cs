@@ -43,7 +43,8 @@ namespace BulkyBookWeb.Migrations
                 name: "StreetAddress",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true);   
+            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -71,6 +72,7 @@ namespace BulkyBookWeb.Migrations
             migrationBuilder.DropColumn(
                 name: "StreetAddress",
                 table: "AspNetUsers");
+            
         }
     }
 }

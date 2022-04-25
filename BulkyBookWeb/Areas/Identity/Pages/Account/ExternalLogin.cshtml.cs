@@ -172,6 +172,7 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
                 user.PostalCode = Input.PostalCode;
                 user.Name = Input.Name;
                 user.PhoneNumber = Input.PhoneNumber;
+                user.Role = SD.Role_User_Indi;
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
