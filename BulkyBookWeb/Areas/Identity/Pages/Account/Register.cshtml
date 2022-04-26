@@ -11,8 +11,8 @@
 }
 else
 {
-<h3 class="mt-5">@ViewData["Title"]</h3>
-	
+	<h3 class="mt-5">@ViewData["Title"]</h3>
+
 }
 
 <div class="row">
@@ -84,43 +84,59 @@ else
 			<button id="registerSubmit" type="submit" class="w-100 btn btn4 btn-warning">Register</button>
 		</form>
 	</div>
-@if (!User.IsInRole(SD.Role_Admin))
+	@if (!User.IsInRole(SD.Role_Admin))
 	{
 		<div class="col-md-5">
-		<section>
-			<h4>Use another service to register.</h4>
-			<hr />
-			@{
-				if ((Model.ExternalLogins?.Count ?? 0) == 0)
-				{
-					<div>
-						<p>
-							There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-								article
-								about setting up this ASP.NET application to support logging in via external services
-							</a>.
-						</p>
-					</div>
-				}
-				else
-				{
-					<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal ms-3">
+			<section>
+				<h4>Use another service to register.</h4>
+				<hr />
+				@{
+					if ((Model.ExternalLogins?.Count ?? 0) == 0)
+					{
 						<div>
 							<p>
-								@foreach (var provider in Model.ExternalLogins)
-								{
-									<button type="submit" class="btn btn-lg btn-secondary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-								}
+								There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+									article
+									about setting up this ASP.NET application to support logging in via external services
+								</a>.
 							</p>
 						</div>
-					</form>
+					}
+					else
+					{
+						<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal ms-3">
+							<div>
+								<p>
+									@foreach (var provider in Model.ExternalLogins)
+									{
+										@if (provider.Name.ToLower().Contains("facebook"))
+										{
+											<button type="submit" class="btn btn-lg btn-block facebook-btn"
+													name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+													<i class="fa-brands fa-facebook-square"></i> @provider.DisplayName
+											</button>
+										}
+										else
+										{
+											@if (provider.Name.ToLower().Contains("google"))
+											{
+												<button type="submit" class="btn btn-lg btn-block google-btn"
+														name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+														<i class="fa-brands fa-google"></i> @provider.DisplayName
+												</button>
+											}
+										}
+									}
+								</p>
+							</div>
+						</form>
+					}
 				}
-			}
-		</section>
-	</div>
+			</section>
+		</div>
 	}
 
-	
+
 </div>
 
 @section Scripts {

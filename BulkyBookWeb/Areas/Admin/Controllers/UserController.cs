@@ -83,36 +83,6 @@ namespace BulkyBookWeb.Areas.Admin
 
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> ChangeRolePost(ApplicationUser user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _unitOfWork.ApplicationUser.Update(user);
-
-        //        var userRole = _db.UserRoles.FirstOrDefault(u => u.UserId == user.Id);
-        //        if (userRole != null)
-        //        {
-        //            var previousRoleName = _db.Roles.Where(u => u.Id == userRole.RoleId).Select(u => u.Name).FirstOrDefault();
-        //            var newRoleName = _db.Roles.FirstOrDefault(u => u.Name == user.Role).Name;
-
-        //            await _userManager.RemoveFromRoleAsync(user, previousRoleName);
-        //            await _userManager.AddToRoleAsync(user, newRoleName);
-
-
-        //        }
-
-        //        _unitOfWork.Save();
-        //        TempData["success"] = "User updated successfully";
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return RedirectToAction("Index");
-
-
-
-        //}
 
         #region API CALLS  
 
@@ -140,6 +110,26 @@ namespace BulkyBookWeb.Areas.Admin
             return Json(new { success = true, message = "Delete Successful" });
 
 
+        }
+
+        [HttpPost]
+        public IActionResult LockUnlock([FromBody] string id)
+        {
+            var obj = _unitOfWork.ApplicationUser.GetFirstOrDefault(u=>u.Id == id);
+            if (obj == null)
+            {
+                return Json(new { success = false, message = "Error while Locking/Unlocking" });
+            }
+            if(obj.LockoutEnd!=null && obj.LockoutEnd > DateTime.Now)
+            {
+                obj.LockoutEnd = DateTime.Now;
+            }
+            else
+            {
+                obj.LockoutEnd = DateTime.Now.AddYears(1000);
+            }
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Operation Successful" });
         }
 
 

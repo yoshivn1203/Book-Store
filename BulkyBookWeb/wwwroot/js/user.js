@@ -16,15 +16,37 @@ function loadDataTable() {
             { "data": "role", "width": "15%" },
 
             {
-                "data": "id",
+                "data": { id: "id", lockoutEnd: "lockoutEnd"},
                 "render": function (data) {
-                    return `
-                    <a href="/Admin/User/ChangeRole?id=${data}"
-                    class="btn btn-warning btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
-                     <a onClick=Delete('/Admin/User/Delete/${data}')
-                     class="btn btn-danger btn-sm btn4"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>`
+                    var today = new Date().getTime();
+                    var lockout = new Date(data.lockoutEnd).getTime();
+                    if (lockout > today)
+                    {
+                        return `
+                    <a onClick=LockUnlock('${data.id}')
+                     class="btn btn-danger btn-sm btn4" style="width:90px;"> <i class="fas fa-lock-open"></i> &nbsp; Unlock </a>
+                    <a href="/Admin/User/ChangeRole?id=${data.id}"
+                    class="btn btn-warning btn-sm btn4" style="width:90px;"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
+                     <a onClick=Delete('/Admin/User/Delete/${data.id}')
+                     class="btn btn-danger btn-sm btn4" style="width:90px;"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>`
+                    }
+                    else
+                    {
+                        return `
+                    <a onClick=LockUnlock('${data.id}')
+                     class="btn btn-success btn-sm btn4" style="width:90px;"> <i class="fas fa-lock"></i> &nbsp; Lock </a>
+                    <a href="/Admin/User/ChangeRole?id=${data.id}"
+                    class="btn btn-warning btn-sm btn4" style="width:90px;"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
+                     <a onClick=Delete('/Admin/User/Delete/${data.id}')
+                     class="btn btn-danger btn-sm btn4" style="width:90px;"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>`
+                    }
+                    //return `
+                    //<a href="/Admin/User/ChangeRole?id=${data.id}"
+                    //class="btn btn-warning btn-sm btn4"> <i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
+                    // <a onClick=Delete('/Admin/User/Delete/${data.id}')
+                    // class="btn btn-danger btn-sm btn4"> <i class="bi bi-trash3"></i> &nbsp; Delete </a>`
                 },
-                "width": "15%"
+                "width": "20%"
             }
 
         ]
@@ -58,3 +80,26 @@ function Delete(url) {
         }
     })
 }
+
+function LockUnlock(id) {
+ 
+            $.ajax({
+                url: '/Admin/User/LockUnlock',
+                type: 'POST',
+                data: JSON.stringify(id),
+                contentType: "application/json",
+                success: function (data) {
+                    if (data.success) {
+                        dataTable.ajax.reload();
+                        toastr.success(data.message);
+                    }
+                    else {
+                        toastr.error(data.message);
+                    }
+                }
+            })
+        }
+
+
+
+

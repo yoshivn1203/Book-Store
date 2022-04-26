@@ -8,8 +8,14 @@
 
 	@if (User.IsInRole(SD.Role_Admin))
 	{
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user-gear"></i>&nbsp Admin Portal</a>
+		<li class="nav-item dropdown text-center">
+			<a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				<div>
+					<i class="fa-solid fa-lg fa-user-gear"></i>
+
+				</div>
+				Admin Portal
+			</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
 				<a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
@@ -21,26 +27,48 @@
 				<a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User Management</a>
 			</div>
 		</li>
-		<li class="nav-item">  &nbsp &nbsp &nbsp </li>
+		<li class="nav-item">  &nbsp &nbsp </li>
 	}
 	@if (SignInManager.IsSignedIn(User))
 	{
-		<li class="nav-item">
-			<a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+		<li class="nav-item text-center">
+			<a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+				<div>
+					<i class="fas fa-envelope fa-lg mb-1"></i>
+				</div>
+				Hello @UserManager.GetUserName(User)!
+			</a>
 		</li>
+		<li class="nav-item">  &nbsp &nbsp </li>
 		<li class="nav-item">
 			<form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-				<button id="logout" type="submit" class="nav-link btn btn-link text-light">Logout</button>
+				<button id="logout" type="submit" class="nav-link btn btn-link text-light">
+
+					<div>
+						<i class="fa-solid fa-lg fa-right-from-bracket"></i>
+					</div>
+					Logout
+				</button>
 			</form>
 		</li>
+		<li class="nav-item">  &nbsp &nbsp</li>
 	}
 	else
 	{
-		<li class="nav-item">
-			<a class="nav-link text-light" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+		<li class="nav-item text-center">
+			<a class="nav-link text-light" id="register" asp-area="Identity" asp-page="/Account/Register">
+				<div><i class="fa-solid fa-lg fa-address-card"></i></div>
+				Register
+			</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+		<li class="nav-item">  &nbsp &nbsp </li>
+		<li class="nav-item text-center">
+			<a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login">
+				<div><i class="fa-solid fa-lg fa-right-to-bracket"></i></div>
+				Login
+			</a>
 		</li>
+		<li class="nav-item">  &nbsp &nbsp </li>
+
 	}
 </ul>

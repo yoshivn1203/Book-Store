@@ -46,6 +46,14 @@ footer {
 }
 
 
+.facebook-btn{
+    background-color: #3C589C;
+    color: white;
+
+}.google-btn{
+    background-color: #DD4B39;
+    color: white;
+}
 
 .btn {
     /*border: none;
@@ -57,6 +65,7 @@ footer {
    /* font-size: 10px;*/
     /*margin: 4px 2px;*/
 }
+
 
 .btn1 {
     border-radius: 2px;
@@ -84,6 +93,32 @@ footer {
 }
 
 .active2 {
-    background-color: #808080;
+    background-color: #2C5364;
     color: white;
+}
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #0F2027;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #0F2027, #203A43, #2C5364);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #0F2027, #203A43, #2C5364)
+}
+.gradient-custom-black {
+    /* fallback for old browsers */
+    background: #232526;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #232526, #414345);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #232526, #414345)
+
+}
+.gradient-custom-hot {
+    /* fallback for old browsers */
+    background: #232526;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #232526, #414345);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ffe259, #ffa751)
 }

@@ -31,13 +31,21 @@ namespace BulkyBookWeb.Controllers;
             _unitOfWork = unitOfWork;
     }
 
-        public IActionResult Index()
+        public IActionResult Index(string bookname)
         {
 
         IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+        if (String.IsNullOrEmpty(bookname))
+        {
+            return View(productList);
 
-        return View(productList);
         }
+        else
+        {
+            productList = productList.Where(u => u.Title.Contains(bookname) || u.Title.ToLower().Contains(bookname));
+            return View(productList);
+        }
+    }
 
     public IActionResult Details(int productId)
     {

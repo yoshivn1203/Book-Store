@@ -69,7 +69,23 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-lg btn-secondary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    @if (provider.Name.ToLower().Contains("facebook"))
+										{
+											<button type="submit" class="btn btn-lg btn-block facebook-btn"
+													name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+													<i class="fa-brands fa-facebook-square"></i> @provider.DisplayName
+											</button>
+										}
+										else
+										{
+											@if (provider.Name.ToLower().Contains("google"))
+											{
+												<button type="submit" class="btn btn-lg btn-block google-btn"
+														name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+														<i class="fa-brands fa-google"></i> @provider.DisplayName
+												</button>
+											}
+										}
                                 }
                             </p>
                         </div>

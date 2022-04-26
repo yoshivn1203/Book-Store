@@ -13,20 +13,20 @@ namespace BulkyBook.Utility
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var emailToSend = new MimeMessage();
-            emailToSend.From.Add(MailboxAddress.Parse("nhaplinhtinhcungduoc@gmail.com"));
-            emailToSend.To.Add(MailboxAddress.Parse(email));
-            emailToSend.Subject = subject;
-            emailToSend.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = htmlMessage };
+            //var emailToSend = new MimeMessage();
+            //emailToSend.From.Add(MailboxAddress.Parse("nhaplinhtinhcungduoc@gmail.com"));
+            //emailToSend.To.Add(MailboxAddress.Parse(email));
+            //emailToSend.Subject = subject;
+            //emailToSend.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = htmlMessage };
 
-            //send email
-            using (var emailClient = new SmtpClient())
-            {
-                emailClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                emailClient.Authenticate("yoshivn1203@gmail.com", "builttolast1203");
-                emailClient.Send(emailToSend);
-                emailClient.Disconnect(true);
-            }
+            ////send email
+            //using (var emailClient = new SmtpClient())
+            //{
+            //    emailClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            //    emailClient.Authenticate("email here", "password here");
+            //    emailClient.Send(emailToSend);
+            //    emailClient.Disconnect(true);
+            //}
 
             return Task.CompletedTask;
         }

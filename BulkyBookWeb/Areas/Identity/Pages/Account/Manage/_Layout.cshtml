@@ -5,11 +5,11 @@
     }
     else
     {
-        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+        Layout = "/Views/Shared/_Layout.cshtml";
     }
 }
 
-<h1>Manage your account</h1>
+<h1 class="pt-5">Manage your account</h1>
 
 <div>
     <h2>Change your account settings</h2>
@@ -18,7 +18,11 @@
         <div class="col-md-3">
             <partial name="_ManageNav" />
         </div>
-        <div class="col-md-9">
+        <div class="col-md-1">
+        </div>
+
+
+        <div class="col-md-8">
             @RenderBody()
         </div>
     </div>
