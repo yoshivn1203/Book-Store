@@ -125,7 +125,8 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
             if (applicationUser.CompanyID.GetValueOrDefault() == 0)
             {
                 //Stripe settings
-                var domain = "https://localhost:44325/";
+                //var domain = "https://localhost:44325/";
+                var domain = "https://bobobook.azurewebsites.net/";
                 var options = new SessionCreateOptions
                 {
                     LineItems = new List<SessionLineItemOptions>()

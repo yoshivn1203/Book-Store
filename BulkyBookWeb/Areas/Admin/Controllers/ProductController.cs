@@ -42,7 +42,7 @@ public class ProductController : Controller
             {
                 Text = i.Name,
                 Value = i.Id.ToString()
-            })
+            }),          
         };
         if (id == null || id == 0)
         {

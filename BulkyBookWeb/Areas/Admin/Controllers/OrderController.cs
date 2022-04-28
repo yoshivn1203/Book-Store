@@ -48,7 +48,8 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             OrderVM.OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
 
             //stripe settings 
-            var domain = "https://localhost:44325/";
+            //var domain = "https://localhost:44325/";
+            var domain = "https://bobobook.azurewebsites.net/";
             var options = new SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string>
@@ -219,13 +220,13 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                     orderHeaders = orderHeaders.Where(u=>u.PaymentStatus==SD.PaymentStatusDelayedPayment);
                     break;
                 case "inprocess":
-                    orderHeaders = orderHeaders.Where(u => u.PaymentStatus == SD.StatusInProcess);
+                    orderHeaders = orderHeaders.Where(u => u.OrderStatus == SD.StatusInProcess);
                     break;
                 case "completed":
-                    orderHeaders = orderHeaders.Where(u => u.PaymentStatus == SD.StatusShipped);
+                    orderHeaders = orderHeaders.Where(u => u.OrderStatus == SD.StatusShipped);
                     break;
                 case "approved":
-                    orderHeaders = orderHeaders.Where(u => u.PaymentStatus == SD.StatusApproved);
+                    orderHeaders = orderHeaders.Where(u => u.OrderStatus == SD.StatusApproved);
                     break;
                 default:
                     break;

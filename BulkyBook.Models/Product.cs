@@ -46,6 +46,7 @@ namespace BulkyBook.Models
         [ValidateNever]
         public CoverType  CoverType { get; set; }
 
+
         public string ShortenDescription(int charCount)
         {
             if(Description.Length > charCount)

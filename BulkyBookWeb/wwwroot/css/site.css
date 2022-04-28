@@ -97,9 +97,13 @@ footer {
     color: white;
 }
 
+.main-color {
+    background: #2C5364;
+}
+
 .gradient-custom {
     /* fallback for old browsers */
-    background: #0F2027;
+    background: #2C5364;
     /* Chrome 10-25, Safari 5.1-6 */
     background: -webkit-linear-gradient(to right, #0F2027, #203A43, #2C5364);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
