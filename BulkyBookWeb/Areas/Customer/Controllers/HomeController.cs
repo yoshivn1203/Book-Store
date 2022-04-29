@@ -32,7 +32,7 @@ public class HomeController : Controller
         _unitOfWork = unitOfWork;
     }
 
-    public IActionResult Index(string bookname, string category, string covertype, string orderBy)
+    public IActionResult Index(string bookname, string category, string covertype, string orderBy, string pageIndex = "1")
     {
         ProductVM productVM = new()
         {
@@ -46,7 +46,7 @@ public class HomeController : Controller
                 Text = i.Name,
                 Value = i.Name
             }),
-            ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType").OrderBy(u=>u.ListPrice),
+            ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType"),
 
         };
 
@@ -88,7 +88,19 @@ public class HomeController : Controller
 
             }
         }
-        return View(productVM);
+        if (!String.IsNullOrEmpty(pageIndex))
+        {
+            if(pageIndex =="1")
+            {
+                productVM.ProductList = productVM.ProductList.Take(8);
+            }
+            else if (pageIndex == "2")
+            {
+                productVM.ProductList = productVM.ProductList.Skip(8);
+            }
+        }
+
+            return View(productVM);
 
 
         //IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
